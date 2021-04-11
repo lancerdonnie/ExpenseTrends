@@ -1,12 +1,14 @@
 import type { Response, Request, Router } from 'express';
-
-export interface GenericType {
-  created_date: Date;
-  updated_date: Date;
-}
+import type { User } from './entity/User';
 
 export interface IContainer {
   cradle: ICradle;
 }
 
-export interface ICradle {}
+export interface ICradle {
+  repo: Repo;
+  core: Core;
+  db: { user: typeof User };
+  UrlController: Router;
+  createConn: () => void;
+}
