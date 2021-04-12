@@ -9,6 +9,5 @@ export interface ICradle {
   repo: Repo;
   core: Core;
   db: { user: typeof User };
-  UrlController: Router;
-  createConn: () => void;
+  UserController: Router;
 }

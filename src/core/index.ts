@@ -6,6 +6,8 @@ export default class Core {
   }
   repo;
 
+  getUserExpenseTrends = async () => {};
+
   //   getUrl = async (shortId: string) => {
   //     if (!shortId) throw new Error(ERRORS.URL.NOT_FOUND_URL);
   //     const url = await this.repo.checkShortId(shortId);
