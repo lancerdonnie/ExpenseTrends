@@ -10,6 +10,5 @@ export default async ({
   container: IContainer;
 }) => {
   expressLoader({ app, container });
-  await container.cradle.createConn();
   return app;
 };

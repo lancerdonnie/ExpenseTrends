@@ -8,6 +8,6 @@ export interface IContainer {
 export interface ICradle {
   repo: Repo;
   core: Core;
-  db: { user: typeof User };
-  UserController: Router;
+  query: (sql: string, values?: any) => Promise<unknown>;
+  TrendsController: Router;
 }

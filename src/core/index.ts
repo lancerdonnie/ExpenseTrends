@@ -6,7 +6,20 @@ export default class Core {
   }
   repo;
 
-  getUserExpenseTrends = async () => {};
+  getUserExpenseTrends = async () => {
+    const userTrends = this.repo.getUserExpenseTrends();
+    return userTrends;
+  };
+
+  getUsers = async () => {
+    const users = this.repo.getUsers();
+    return users;
+  };
+
+  getUser = async (id: number) => {
+    const user = this.repo.getUser(id);
+    return user;
+  };
 
   //   getUrl = async (shortId: string) => {
   //     if (!shortId) throw new Error(ERRORS.URL.NOT_FOUND_URL);

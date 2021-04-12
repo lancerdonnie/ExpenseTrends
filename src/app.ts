@@ -1,6 +1,5 @@
 import type { IContainer } from './types';
 import express from 'express';
-import 'reflect-metadata';
 import loadApp from './loaders';
 import { config } from 'dotenv';
 config();

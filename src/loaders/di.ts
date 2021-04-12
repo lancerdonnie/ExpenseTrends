@@ -2,8 +2,8 @@ import type { ICradle } from '../types';
 import { createContainer, asClass, asFunction, asValue } from 'awilix';
 import Repo from '../repo';
 import Core from '../core';
-import Db from '../entity/database';
-import UserController from '../controllers/Trends';
+import TrendsController from '../controllers/Trends';
+import query from './createConn';
 
 export const setupDi = () => {
   const container = createContainer<ICradle>();
@@ -11,8 +11,8 @@ export const setupDi = () => {
   container.register({
     repo: asClass(Repo).scoped(),
     core: asClass(Core).scoped(),
-    db: asValue(Db),
-    UserController: asFunction(UserController),
+    query: asValue(query),
+    TrendsController: asFunction(TrendsController),
   });
 
   return container;
