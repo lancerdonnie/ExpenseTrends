@@ -13,5 +13,5 @@ export default async ({
   app.use(json());
   app.use(cors());
 
-  app.use(container.cradle.UrlController);
+  app.use('/api/v1', container.cradle.TrendsController);
 };
