@@ -4,10 +4,14 @@ import LeftSide from '../components/LeftSide';
 import RightSide from '../components/RightSide';
 import Spinner from '../components/Spinner';
 import { url } from '../utils/Constants';
+import { useSelector, useDispatch } from 'react-redux';
+import { AddUsers, SetSelectedUser } from '../redux/actions';
 
 const IndexPage = () => {
-  const [users, setUsers] = useState<any[]>([]);
-  const [selected, setSelected] = useState<number | null>(null);
+  const users: any[] = useSelector((state: any) => state.users);
+  const selected: number | null = useSelector((state: any) => state.selected);
+
+  const dispatch = useDispatch();
 
   const [isLoading, setIsloading] = useState(true);
 
@@ -15,8 +19,8 @@ const IndexPage = () => {
     axios
       .get(`${url}/trend/users`)
       .then((e) => {
-        setUsers(e.data);
-        setSelected(e.data[0]?.id);
+        dispatch(AddUsers(e.data));
+        dispatch(SetSelectedUser(e.data[0]?.id));
       })
       .catch(console.error)
       .finally(() => {
@@ -30,15 +34,8 @@ const IndexPage = () => {
     <div>
       <nav className="h-[49px] bg-nv"></nav>
       <div className="flex">
-        <LeftSide users={users} selected={selected} setSelected={setSelected} />
-        {selected && (
-          <RightSide
-            users={users}
-            selected={selected}
-            setSelected={setSelected}
-            user={users.find((e) => e.id === selected)}
-          />
-        )}
+        <LeftSide />
+        {selected && <RightSide user={users.find((e) => e.id === selected)} />}
       </div>
     </div>
   );

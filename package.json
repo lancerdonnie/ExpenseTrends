@@ -5,9 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "heroku-postbuild": "tsc && cd frontend && npm install && npm run build && npm prune --production",
     "dev": "nodemon src/index.ts",
-    "start": "node dist/src/index.js",
+    "start": "node dist/index.js",
     "test": "jest --forceExit --detectOpenHandles  --watch --testTimeout=10000",
     "seed": "ts-node src/seed/index.ts"
   },
@@ -19,6 +18,7 @@
   },
   "dependencies": {
     "awilix": "^4.3.3",
+    "axios": "^0.21.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",

@@ -1,13 +1,14 @@
 import React from 'react';
 import UserCard from './UserCard';
+import { useSelector, useDispatch } from 'react-redux';
+import { SetSelectedUser } from '../redux/actions';
 
-interface Props {
-  users: any[];
-  selected: number | null;
-  setSelected: (id: number) => void;
-}
+const LeftSide = () => {
+  const dispatch = useDispatch();
 
-const LeftSide = ({ users, selected, setSelected }: Props) => {
+  const users: any[] = useSelector((state: any) => state.users);
+  const selected: number | null = useSelector((state: any) => state.selected);
+
   return (
     <div className="w-[411px]" style={{ borderRight: '1px solid #E5E5E5' }}>
       <div
@@ -22,7 +23,7 @@ const LeftSide = ({ users, selected, setSelected }: Props) => {
             key={e.id}
             selected={selected}
             user={e}
-            onClick={() => setSelected(e.id)}
+            onClick={() => dispatch(SetSelectedUser(e.id))}
           />
         ))}
       </div>
