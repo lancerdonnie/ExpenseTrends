@@ -8,7 +8,7 @@
 
 ### **Architecture Overview**
 
-![Architecture Overview](https://drive.google.com/file/d/1mNsfnD4rC0lK4OO2PANF55TfxRivV7aD/view?usp=sharing)
+![Architecture Overview](https://drive.google.com/uc?export=view&id=1mdqmoa0HSG35XAO6uKJCy_pYAEvecD6v)
 
 ## **:package: Tools used**
 
