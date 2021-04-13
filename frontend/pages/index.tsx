@@ -9,10 +9,9 @@ const IndexPage = () => {
   const [users, setUsers] = useState<any[]>([]);
   const [selected, setSelected] = useState<number | null>(null);
 
-  const [isLoading, setIsloading] = useState(false);
+  const [isLoading, setIsloading] = useState(true);
 
   useEffect(() => {
-    setIsloading(true);
     axios
       .get(`${url}/trend/users`)
       .then((e) => {

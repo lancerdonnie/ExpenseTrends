@@ -21,6 +21,8 @@ const RightSide = ({ user, users, selected, setSelected }: Props) => {
   const [isSimilarLoading, setIsSimilarloading] = useState(false);
 
   useEffect(() => {
+    setTrends([]);
+    setSimilar([]);
     setIsTrendloading(true);
     axios
       .get(`${url}/trend/${selected}`)
