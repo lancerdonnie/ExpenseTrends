@@ -6,6 +6,10 @@
 
 ## Visit [clubboyage.herokuapp.com](https://expensetrends.herokuapp.com/) to test the live api!
 
+### **Architecture Overview**
+
+![Architecture Overview](https://drive.google.com/file/d/1mNsfnD4rC0lK4OO2PANF55TfxRivV7aD/view?usp=sharing)
+
 ## **:package: Tools used**
 
 frontend
