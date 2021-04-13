@@ -2,18 +2,26 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import LeftSide from '../components/LeftSide';
 import RightSide from '../components/RightSide';
+import Spinner from '../components/Spinner';
 import { url } from '../utils/Constants';
 
 const IndexPage = () => {
   const [users, setUsers] = useState<any[]>([]);
   const [selected, setSelected] = useState<number | null>(null);
 
+  const [isLoading, setIsloading] = useState(false);
+
   useEffect(() => {
+    setIsloading(true);
     axios.get(`${url}/trend/users`).then((e) => {
       setUsers(e.data);
       setSelected(e.data[0]?.id);
+      setIsloading(false);
     });
   }, []);
+
+  if (isLoading) return <Spinner customClass="h-screen" />;
+
   return (
     <div>
       <nav className="h-[49px] bg-nv"></nav>
