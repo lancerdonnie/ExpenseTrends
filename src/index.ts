@@ -1,8 +1,18 @@
-import makeApp from './app';
-import { setupDi } from './loaders/di';
+import express, { json } from 'express';
+import cors from 'cors';
+import { config } from 'dotenv';
+config();
 
-const container = setupDi();
-const app = makeApp({ container });
+import SimilarService from '../similar';
+import TrendService from '../trend';
+
+const app = express();
+
+app.use(json());
+app.use(cors());
+
+app.use('/similar', SimilarService());
+app.use('/trend', TrendService());
 
 const PORT = process.env.PORT || 5000;
 

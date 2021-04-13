@@ -9,7 +9,7 @@ const IndexPage = () => {
   const [selected, setSelected] = useState<number | null>(null);
 
   useEffect(() => {
-    axios.get(`${url}/users`).then((e) => {
+    axios.get(`${url}/trend/users`).then((e) => {
       setUsers(e.data);
       setSelected(e.data[0]?.id);
     });

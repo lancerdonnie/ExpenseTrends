@@ -20,11 +20,22 @@ const RightSide = ({ user, users, selected, setSelected }: Props) => {
     axios.get(`${url}/trend/${selected}`).then((res) => {
       setTrends(res.data);
     });
-    axios.get(`${url}/similar/${selected}`).then((res) => {
-      const t = users.filter((e) => res.data.find((x: any) => x.id === e.id));
-      setSimilar(t);
-    });
   }, [selected]);
+
+  useEffect(() => {
+    trends.length &&
+      axios
+        .post(`${url}/similar`, {
+          id: selected,
+          categories: trends.map((e) => e.category),
+        })
+        .then((res) => {
+          const t = users.filter((e) =>
+            res.data.find((x: any) => x.id === e.id)
+          );
+          setSimilar(t);
+        });
+  }, [trends]);
 
   return (
     <div className="flex flex-col items-center flex-grow">
@@ -59,7 +70,7 @@ const RightSide = ({ user, users, selected, setSelected }: Props) => {
           </div>
         </div>
         <div>
-          <span className="text-15">
+          <span className="text-15 px-6">
             USERS LIKE {`'"${user.first_name} ${user.last_name}"`}
           </span>
           <div className="flex flex-col mt-[34px]">
@@ -69,7 +80,7 @@ const RightSide = ({ user, users, selected, setSelected }: Props) => {
                 hideArrow
                 selected={selected}
                 user={user}
-                onClick={() => setSelected(selected)}
+                onClick={() => setSelected(user.id)}
               />
             ))}
           </div>

@@ -3,6 +3,7 @@ import mysql from 'mysql2';
 class DBConnection {
   db;
   constructor() {
+    console.log(process.env.MYSQL_HOST);
     this.db = mysql.createPool({
       host: process.env.MYSQL_HOST,
       user: process.env.MYSQL_USERNAME,

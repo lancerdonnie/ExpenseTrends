@@ -1,14 +1,14 @@
-import type { Express } from 'express';
+import type { Router } from 'express';
 import type { IContainer } from '../types';
 import expressLoader from './express';
 
 export default async ({
-  app,
+  router,
   container,
 }: {
-  app: Express;
+  router: Router;
   container: IContainer;
 }) => {
-  expressLoader({ app, container });
-  return app;
+  expressLoader({ router, container });
+  return router;
 };
