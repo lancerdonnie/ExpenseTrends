@@ -13,11 +13,16 @@ const IndexPage = () => {
 
   useEffect(() => {
     setIsloading(true);
-    axios.get(`${url}/trend/users`).then((e) => {
-      setUsers(e.data);
-      setSelected(e.data[0]?.id);
-      setIsloading(false);
-    });
+    axios
+      .get(`${url}/trend/users`)
+      .then((e) => {
+        setUsers(e.data);
+        setSelected(e.data[0]?.id);
+      })
+      .catch(console.error)
+      .finally(() => {
+        setIsloading(false);
+      });
   }, []);
 
   if (isLoading) return <Spinner customClass="h-screen" />;

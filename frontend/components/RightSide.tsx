@@ -22,10 +22,15 @@ const RightSide = ({ user, users, selected, setSelected }: Props) => {
 
   useEffect(() => {
     setIsTrendloading(true);
-    axios.get(`${url}/trend/${selected}`).then((res) => {
-      setTrends(res.data);
-      setIsTrendloading(false);
-    });
+    axios
+      .get(`${url}/trend/${selected}`)
+      .then((res) => {
+        setTrends(res.data);
+      })
+      .catch(console.error)
+      .finally(() => {
+        setIsTrendloading(false);
+      });
   }, [selected]);
 
   useEffect(() => {
@@ -41,6 +46,9 @@ const RightSide = ({ user, users, selected, setSelected }: Props) => {
             res.data.find((x: any) => x.id === e.id)
           );
           setSimilar(t);
+        })
+        .catch(console.error)
+        .finally(() => {
           setIsSimilarloading(false);
         });
     }
