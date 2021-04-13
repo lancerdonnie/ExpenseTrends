@@ -16,6 +16,9 @@ module.exports = {
         15: '15px',
         10: '10px',
       },
+      fontFamily: {
+        mono: ['Space Mono'],
+      },
     },
   },
   variants: {
