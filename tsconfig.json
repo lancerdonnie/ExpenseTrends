@@ -23,5 +23,5 @@
     "resolveJsonModule": true,
   },
   "exclude": ["node_modules"],
-  "include": ["./core/**/*.ts", "./trend/**/*.ts", "./similar/**/*.ts"]
+  "include": ["./src/**.*.ts", "./trend/**/*.ts", "./similar/**/*.ts"]
 }

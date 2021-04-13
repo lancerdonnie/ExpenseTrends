@@ -10,9 +10,7 @@ export interface IContainer {
 
 export interface ICradle {
   repo: Repo;
-  similarService: Similar;
-  trendService: Trend;
   query: (sql: string, values?: any) => Promise<any>;
+  trendService: Trend;
   TrendController: Router;
-  SimilarController: Router;
 }

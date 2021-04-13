@@ -1,5 +1,5 @@
 import type { Response, Request } from 'express';
-import type { ICradle } from '../../core/types';
+import type { ICradle } from '../types';
 import { Router } from 'express';
 
 const router = Router();
