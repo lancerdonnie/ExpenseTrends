@@ -2,5 +2,6 @@ test.rest
 README.md
 node_modules
 dist
-src/migration
-src/__tests__
+/frontend/out
+/frontend/node_modules
+/frontend/.next/

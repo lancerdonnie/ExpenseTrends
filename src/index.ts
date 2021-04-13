@@ -15,7 +15,7 @@ app.use(cors());
 app.use('/similar', SimilarService());
 app.use('/trend', TrendService());
 
-app.use(express.static(path.join(__dirname, '../frontend', 'build')));
+app.use(express.static(path.join(__dirname, '../frontend', 'out')));
 
 app.get('/*', function (_, res) {
   res.sendFile(path.join(__dirname, '../frontend', 'out', 'index.html'));

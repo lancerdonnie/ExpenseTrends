@@ -1,17 +1,18 @@
-FROM node:current-alpine as build-step
+FROM node:14.16.0-alpine3.10 as build-step
 WORKDIR /app
 COPY frontend/package*.json ./
+RUN npm install
 COPY ./frontend ./
 RUN npm run build
 
-FROM node:current-alpine
+FROM node:14.16.0-alpine3.10
 WORKDIR /app
 COPY ./package*.json ./
 RUN npm install
 COPY ./ ./
-RUN rm /frontend
+RUN rm -rf frontend
 RUN npm run build
-COPY --from=build-step /app /frontend
+COPY --from=build-step /app/out frontend
 ENV TZ=Africa/Lagos
 ENV PORT=$PORT
 ENV MYSQL_PASSWORD=$MYSQL_PASSWORD
