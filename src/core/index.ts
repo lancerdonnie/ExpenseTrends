@@ -16,9 +16,18 @@ export default class Core {
     return users;
   };
 
-  getUser = async (id: number) => {
-    const user = this.repo.getUser(id);
-    return user;
+  getTrend = async (id: number) => {
+    const trend = this.repo.getTrend(id);
+    return trend;
+  };
+
+  getSimilarUsers = async (id: number) => {
+    const trends = await this.getTrend(id);
+    const similarUsers = await this.repo.getSimilarUsers(
+      trends.map((e: any) => e.category),
+      id
+    );
+    return similarUsers;
   };
 
   //   getUrl = async (shortId: string) => {

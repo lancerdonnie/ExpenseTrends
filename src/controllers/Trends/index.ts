@@ -13,9 +13,14 @@ export default ({ core }: { core: Core }) => {
     res.send(await core.getUsers());
   });
 
-  router.get('/trends/:id', async (req: Request, res: Response) => {
+  router.get('/trend/:id', async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
-    res.send(await core.getUser(id));
+    res.send(await core.getTrend(id));
+  });
+
+  router.get('/similar/:id', async (req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+    res.send(await core.getSimilarUsers(id));
   });
 
   return router;
