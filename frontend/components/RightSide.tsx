@@ -4,6 +4,7 @@ import axios from 'axios';
 import { url } from '../utils/Constants';
 import { relativeTime } from '../utils';
 import UserCard from './UserCard';
+import Spinner from './Spinner';
 
 interface Props {
   selected: number;
@@ -16,14 +17,20 @@ const RightSide = ({ user, users, selected, setSelected }: Props) => {
   const [trends, setTrends] = useState<any[]>([]);
   const [similar, setSimilar] = useState<any[]>([]);
 
+  const [isTrendLoading, setIsTrendloading] = useState(false);
+  const [isSimilarLoading, setIsSimilarloading] = useState(false);
+
   useEffect(() => {
+    setIsTrendloading(true);
     axios.get(`${url}/trend/${selected}`).then((res) => {
       setTrends(res.data);
+      setIsTrendloading(false);
     });
   }, [selected]);
 
   useEffect(() => {
-    trends.length &&
+    if (trends.length) {
+      setIsSimilarloading(true);
       axios
         .post(`${url}/similar`, {
           id: selected,
@@ -34,7 +41,9 @@ const RightSide = ({ user, users, selected, setSelected }: Props) => {
             res.data.find((x: any) => x.id === e.id)
           );
           setSimilar(t);
+          setIsSimilarloading(false);
         });
+    }
   }, [trends]);
 
   return (
@@ -59,14 +68,18 @@ const RightSide = ({ user, users, selected, setSelected }: Props) => {
         <div>
           <span className="text-15">RECURRING EXPENSES</span>
           <div className="grid grid-cols-4 gap-x-[14px] mt-[34px]">
-            {trends.map((trend) => (
-              <div
-                key={trend.category}
-                className="bg-[#A7C5EB] rounded-[11px] w-[70px] p-3.5"
-              >
-                <img src={trend.icon_url} />
-              </div>
-            ))}
+            {isTrendLoading ? (
+              <Spinner size={30} />
+            ) : (
+              trends.map((trend) => (
+                <div
+                  key={trend.category}
+                  className="bg-[#A7C5EB] rounded-[11px] w-[70px] p-3.5"
+                >
+                  <img src={trend.icon_url} />
+                </div>
+              ))
+            )}
           </div>
         </div>
         <div>
@@ -74,15 +87,19 @@ const RightSide = ({ user, users, selected, setSelected }: Props) => {
             USERS LIKE {`'"${user.first_name} ${user.last_name}"`}
           </span>
           <div className="flex flex-col mt-[34px]">
-            {similar.map((user) => (
-              <UserCard
-                key={user.id}
-                hideArrow
-                selected={selected}
-                user={user}
-                onClick={() => setSelected(user.id)}
-              />
-            ))}
+            {isSimilarLoading ? (
+              <Spinner size={30} />
+            ) : (
+              similar.map((user) => (
+                <UserCard
+                  key={user.id}
+                  hideArrow
+                  selected={selected}
+                  user={user}
+                  onClick={() => setSelected(user.id)}
+                />
+              ))
+            )}
           </div>
         </div>
       </div>
