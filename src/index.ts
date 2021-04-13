@@ -1,5 +1,6 @@
 import express, { json } from 'express';
 import cors from 'cors';
+import path from 'path';
 import { config } from 'dotenv';
 config();
 
@@ -13,6 +14,12 @@ app.use(cors());
 
 app.use('/similar', SimilarService());
 app.use('/trend', TrendService());
+
+app.use(express.static(path.join(__dirname, '../frontend', 'build')));
+
+app.get('/*', function (_, res) {
+  res.sendFile(path.join(__dirname, '../frontend', 'out', 'index.html'));
+});
 
 const PORT = process.env.PORT || 5000;
 
