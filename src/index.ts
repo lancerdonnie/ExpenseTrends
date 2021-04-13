@@ -4,16 +4,16 @@ import path from 'path';
 import { config } from 'dotenv';
 config();
 
-import SimilarService from '../similar';
-import TrendService from '../trend';
+import SimilarGateway from './controllers/SimilarGateway';
+import TrendGateway from './controllers/TrendGateway';
 
 const app = express();
 
 app.use(json());
 app.use(cors());
 
-app.use('/similar', SimilarService());
-app.use('/trend', TrendService());
+app.use('/api/similar*', SimilarGateway);
+app.use('/api/trend*', TrendGateway);
 
 app.use(express.static(path.join(__dirname, '../frontend', 'out')));
 
