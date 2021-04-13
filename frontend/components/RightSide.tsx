@@ -1,15 +1,31 @@
-import React from 'react';
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
+import React, { useEffect, useState } from 'react';
 import ShadowCard from './ShadowCard';
-dayjs.extend(relativeTime);
+import axios from 'axios';
+import { url } from '../utils/Constants';
+import { relativeTime } from '../utils';
+import UserCard from './UserCard';
 
 interface Props {
-  selected: number | null;
+  selected: number;
+  setSelected: (id: number) => void;
   user: { [key: string]: any };
+  users: any[];
 }
 
-const RightSide = ({ user }: Props) => {
+const RightSide = ({ user, users, selected, setSelected }: Props) => {
+  const [trends, setTrends] = useState<any[]>([]);
+  const [similar, setSimilar] = useState<any[]>([]);
+
+  useEffect(() => {
+    axios.get(`${url}/trend/${selected}`).then((res) => {
+      setTrends(res.data);
+    });
+    axios.get(`${url}/similar/${selected}`).then((res) => {
+      const t = users.filter((e) => res.data.find((x: any) => x.id === e.id));
+      setSimilar(t);
+    });
+  }, [selected]);
+
   return (
     <div className="flex flex-col items-center flex-grow">
       <img
@@ -21,12 +37,43 @@ const RightSide = ({ user }: Props) => {
       </div>
       <div className="text-sm">
         {user.transactions} Transactions . Joined{' '}
-        {dayjs().to(dayjs(user.created_at))}
+        {relativeTime(user.created_at)}
       </div>
       <div className="mt-12 flex space-x-[11px]">
         <ShadowCard name="TOTAL SPENT" value={'₦' + user.debit} />
         <ShadowCard name="TOTAL INCOME" value={'₦' + user.credit} />
         <ShadowCard name="TRANSACTIONS" value={user.transactions} />
+      </div>
+      <div className="mt-[74px] flex">
+        <div>
+          <span className="text-15">RECURRING EXPENSES</span>
+          <div className="grid grid-cols-4 gap-x-[14px] mt-[34px]">
+            {trends.map((trend) => (
+              <div
+                key={trend.category}
+                className="bg-[#A7C5EB] rounded-[11px] w-[70px] p-3.5"
+              >
+                <img src={trend.icon_url} />
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <span className="text-15">
+            USERS LIKE {`'"${user.first_name} ${user.last_name}"`}
+          </span>
+          <div className="flex flex-col mt-[34px]">
+            {similar.map((user) => (
+              <UserCard
+                key={user.id}
+                hideArrow
+                selected={selected}
+                user={user}
+                onClick={() => setSelected(selected)}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -21,7 +21,9 @@ const IndexPage = () => {
         <LeftSide users={users} selected={selected} setSelected={setSelected} />
         {selected && (
           <RightSide
+            users={users}
             selected={selected}
+            setSelected={setSelected}
             user={users.find((e) => e.id === selected)}
           />
         )}
