@@ -12,7 +12,7 @@ RUN npm install
 COPY ./ ./
 RUN rm -rf frontend
 RUN npm run build
-COPY --from=build-step /app/out dist/frontend/out
+COPY --from=build-step /app/out frontend/out
 ENV TZ=Africa/Lagos
 ENV PORT=$PORT
 ENV MYSQL_PASSWORD=$MYSQL_PASSWORD

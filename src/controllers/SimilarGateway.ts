@@ -3,7 +3,7 @@ import api from '../apiAdapter';
 
 const router = Router();
 
-const baseUrl = 'http://localhost:5002';
+const baseUrl = 'http://expensetrendssimilar.herokuapp.com';
 
 router.post('/', (req, res) => {
   api

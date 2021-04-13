@@ -5,20 +5,23 @@ import { url } from '../utils/Constants';
 import { relativeTime } from '../utils';
 import UserCard from './UserCard';
 import Spinner from './Spinner';
+import { useSelector, useDispatch } from 'react-redux';
+import { SetSelectedUser } from '../redux/actions';
 
 interface Props {
-  selected: number;
-  setSelected: (id: number) => void;
   user: { [key: string]: any };
-  users: any[];
 }
 
-const RightSide = ({ user, users, selected, setSelected }: Props) => {
+const RightSide = ({ user }: Props) => {
   const [trends, setTrends] = useState<any[]>([]);
   const [similar, setSimilar] = useState<any[]>([]);
 
   const [isTrendLoading, setIsTrendloading] = useState(false);
   const [isSimilarLoading, setIsSimilarloading] = useState(false);
+
+  const dispatch = useDispatch();
+  const users: any[] = useSelector((state: any) => state.users);
+  const selected: number | null = useSelector((state: any) => state.selected);
 
   useEffect(() => {
     setTrends([]);
@@ -106,7 +109,7 @@ const RightSide = ({ user, users, selected, setSelected }: Props) => {
                   hideArrow
                   selected={selected}
                   user={user}
-                  onClick={() => setSelected(user.id)}
+                  onClick={() => dispatch(SetSelectedUser(user.id))}
                 />
               ))
             )}
