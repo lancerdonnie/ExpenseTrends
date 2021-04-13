@@ -46,7 +46,7 @@ export default class Repo {
     return res;
   };
 
-  getSimilarUsers = async (category: [], id: number) => {
+  getSimilarUsers = async (id: number, categories: string[]) => {
     const q = `
     select id from 
     (select count(distinct month(t.date_time)) as ct, month(t.date_time) as mnth, user_id,category 
@@ -60,7 +60,7 @@ export default class Repo {
     group by a.user_id having count(user_id) > 1 and not id=?
     order by user_id;`;
 
-    const res = await this.query(q, [category, id]);
+    const res = await this.query(q, [categories, id]);
     return res;
   };
 }
