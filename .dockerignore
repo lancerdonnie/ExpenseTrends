@@ -5,3 +5,5 @@ dist
 /frontend/out
 /frontend/node_modules
 /frontend/.next/
+.env
+docker-compose.yml
