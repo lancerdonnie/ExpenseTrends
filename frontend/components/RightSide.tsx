@@ -84,7 +84,7 @@ const RightSide = ({ user, users, selected, setSelected }: Props) => {
               trends.map((trend) => (
                 <div
                   key={trend.category}
-                  className="bg-[#A7C5EB] rounded-[11px] w-[70px] p-3.5"
+                  className="bg-[#A7C5EB] rounded-[11px] w-[70px] h-[70px] p-3.5"
                 >
                   <img src={trend.icon_url} />
                 </div>
