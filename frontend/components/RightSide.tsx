@@ -57,12 +57,12 @@ const RightSide = ({ user, users, selected, setSelected }: Props) => {
   }, [trends]);
 
   return (
-    <div className="flex flex-col items-center flex-grow">
+    <div className="flex flex-col items-center flex-grow p-6">
       <img
-        className="rounded-full w-[100px] mr-3 mt-[83px]"
+        className="rounded-full w-[100px] mr-3 mt-[54px]"
         src={user.avatar}
       />
-      <div className="text-3xl">
+      <div className="text-3xl font-semibold">
         {user.first_name} {user.last_name}
       </div>
       <div className="text-sm">
@@ -74,9 +74,9 @@ const RightSide = ({ user, users, selected, setSelected }: Props) => {
         <ShadowCard name="TOTAL INCOME" value={'₦' + user.credit} />
         <ShadowCard name="TRANSACTIONS" value={user.transactions} />
       </div>
-      <div className="mt-[74px] flex">
-        <div>
-          <span className="text-15">RECURRING EXPENSES</span>
+      <div className="mt-[74px] w-full flex ">
+        <div className="w-2/4 ">
+          <span className="text-15 flex-1">RECURRING EXPENSES</span>
           <div className="grid grid-cols-4 gap-x-[14px] mt-[34px]">
             {isTrendLoading ? (
               <Spinner size={30} />
@@ -92,7 +92,7 @@ const RightSide = ({ user, users, selected, setSelected }: Props) => {
             )}
           </div>
         </div>
-        <div>
+        <div className="w-2/4 ">
           <span className="text-15 px-6">
             USERS LIKE {`'"${user.first_name} ${user.last_name}"`}
           </span>

@@ -12,7 +12,9 @@ const ShadowCard = ({ name, value }: Props) => {
       style={{ boxShadow: '0px 1px 4px 4px rgba(0, 0, 0, 0.03)' }}
     >
       <span className="text-[9px]">{name}</span>
-      <span className="font-[28px] text-[#4A47A3] font-bold">{value}</span>
+      <span className="font-[28px] text-[#4A47A3] font-bold font-mono">
+        {value}
+      </span>
     </div>
   );
 };
