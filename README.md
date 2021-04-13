@@ -8,7 +8,7 @@
 
 ### **Architecture Overview**
 
-![Architecture Overview](https://drive.google.com/uc?export=view&id=1mdqmoa0HSG35XAO6uKJCy_pYAEvecD6v)
+<a href="https://drive.google.com/uc?export=view&id=1mdqmoa0HSG35XAO6uKJCy_pYAEvecD6v"><img src="https://drive.google.com/uc?export=view&id=1mdqmoa0HSG35XAO6uKJCy_pYAEvecD6v" style="width: 650px; max-width: 100%; height: auto" title="Click to enlarge picture" />
 
 ## **:package: Tools used**
 
